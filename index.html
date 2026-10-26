@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Team Project Management System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="TeamFlow home">
+        <span class="brand-mark">TF</span>
+        <span>TeamFlow<small>STUDENT WORKSPACE</small></span>
+      </a>
+
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-menu" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+        <a class="nav-link" href="#projects"><span>▤</span> Projects</a>
+        <a class="nav-link" href="#tasks"><span>☑</span> My Tasks</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">✦</div>
+          <strong>Make progress together</strong>
+          <p>Keep your team's work organized, one task at a time.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar">ST</div>
+          <div><strong>Student Team</strong><small>Project workspace</small></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR WORKSPACE</p>
+          <h1>Project overview</h1>
+          <p class="subtitle">Plan together. Stay on track. Achieve more.</p>
+        </div>
+        <button class="primary-button" id="openProjectModal"><span>＋</span> New project</button>
+      </header>
+
+      <section class="welcome-banner" id="overview">
+        <div class="welcome-copy">
+          <span class="banner-tag">STUDENT TEAM WORKSPACE</span>
+          <h2>Great work starts<br>with a clear plan.</h2>
+          <p>Organize academic projects, share responsibilities, and keep every deadline in sight.</p>
+          <button class="light-button" id="bannerCreateProject">＋ Create a project</button>
+        </div>
+        <div class="banner-art" aria-hidden="true">
+          <div class="art-circle circle-one"></div>
+          <div class="art-circle circle-two"></div>
+          <div class="art-board">
+            <div class="art-board-top"><span></span><span></span><span></span></div>
+            <div class="art-line wide"></div><div class="art-line"></div>
+            <div class="art-task"><i class="task-dot purple"></i><span></span><b>Done</b></div>
+            <div class="art-task"><i class="task-dot green"></i><span></span><b>In progress</b></div>
+            <div class="art-task"><i class="task-dot orange"></i><span></span><b>To do</b></div>
+          </div>
+          <div class="floating-check">✓</div>
+          <div class="floating-star">✦</div>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Project statistics">
+        <article class="stat-card">
+          <div class="stat-top"><span class="stat-icon violet">▤</span><span class="stat-label">Total projects</span></div>
+          <strong id="totalProjects">0</strong><p>Projects in your workspace</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span class="stat-icon blue">☑</span><span class="stat-label">Total tasks</span></div>
+          <strong id="totalTasks">0</strong><p>Tasks across all projects</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span class="stat-icon green">✓</span><span class="stat-label">Completed</span></div>
+          <strong id="completedTasks">0</strong><p>Tasks finished successfully</p>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span class="stat-icon orange">◷</span><span class="stat-label">In progress</span></div>
+          <strong id="inProgressTasks">0</strong><p>Tasks currently underway</p>
+        </article>
+      </section>
+
+      <section class="content-section" id="projects">
+        <div class="section-heading">
+          <div><h2>Your projects</h2><p>All your team's academic work in one place.</p></div>
+          <button class="text-button" id="viewProjects">View all <span>→</span></button>
+        </div>
+        <div class="project-grid" id="projectGrid"></div>
+        <div class="empty-state" id="emptyProjects">
+          <div class="empty-icon">▤</div>
+          <h3>Your first project starts here</h3>
+          <p>Create a project to organize tasks, deadlines, and team progress.</p>
+          <button class="primary-button" id="emptyCreateProject">＋ Create your first project</button>
+        </div>
+      </section>
+
+      <section class="content-section task-section" id="tasks">
+        <div class="section-heading">
+          <div><h2>Team tasks</h2><p>Keep an eye on what needs to get done next.</p></div>
+          <button class="primary-button small-button" id="openTaskModal">＋ Add task</button>
+        </div>
+        <div class="task-panel">
+          <div class="task-toolbar">
+            <div class="filter-tabs" role="group" aria-label="Filter tasks">
+              <button class="filter-tab active" data-filter="All">All tasks</button>
+              <button class="filter-tab" data-filter="To do">To do</button>
+              <button class="filter-tab" data-filter="In progress">In progress</button>
+              <button class="filter-tab" data-filter="Completed">Completed</button>
+            </div>
+            <label class="search-box"><span>⌕</span><input type="search" id="taskSearch" placeholder="Search tasks..." aria-label="Search tasks"></label>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>TASK</th><th>PROJECT</th><th>ASSIGNEE</th><th>DUE DATE</th><th>STATUS</th><th></th></tr></thead>
+              <tbody id="taskTableBody"></tbody>
+            </table>
+          </div>
+          <div class="empty-tasks" id="emptyTasks">No tasks found. Add a task to get started.</div>
+        </div>
+      </section>
+
+      <footer>Made for student teams <span>♥</span> · Your data is saved in this browser.</footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <div class="modal-heading"><div><p class="eyebrow">WORKSPACE</p><h2 id="projectModalTitle">Create a project</h2></div><button class="close-button" data-close="projectModal" aria-label="Close">×</button></div>
+      <form id="projectForm">
+        <label for="projectName">Project name <span>*</span></label>
+        <input id="projectName" name="projectName" required maxlength="70" placeholder="e.g. Student Team Project Management System">
+        <label for="projectDescription">Description</label>
+        <textarea id="projectDescription" name="projectDescription" rows="3" maxlength="240" placeholder="What will your team work on?"></textarea>
+        <div class="form-row">
+          <div><label for="projectDueDate">Target deadline</label><input id="projectDueDate" name="projectDueDate" type="date"></div>
+          <div><label for="projectColor">Project color</label><select id="projectColor" name="projectColor"><option value="purple">Purple</option><option value="blue">Blue</option><option value="green">Green</option><option value="orange">Orange</option></select></div>
+        </div>
+        <div class="modal-actions"><button type="button" class="secondary-button" data-close="projectModal">Cancel</button><button type="submit" class="primary-button">Create project</button></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="taskModal" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
+      <div class="modal-heading"><div><p class="eyebrow">TASK PLANNER</p><h2 id="taskModalTitle">Add a task</h2></div><button class="close-button" data-close="taskModal" aria-label="Close">×</button></div>
+      <form id="taskForm">
+        <label for="taskName">Task title <span>*</span></label>
+        <input id="taskName" name="taskName" required maxlength="100" placeholder="e.g. Prepare project presentation">
+        <label for="taskProject">Project <span>*</span></label>
+        <select id="taskProject" name="taskProject" required></select>
+        <div class="form-row">
+          <div><label for="taskAssignee">Assigned to</label><input id="taskAssignee" name="taskAssignee" maxlength="50" placeholder="Team member name"></div>
+          <div><label for="taskDueDate">Due date</label><input id="taskDueDate" name="taskDueDate" type="date"></div>
+        </div>
+        <label for="taskStatus">Status</label>
+        <select id="taskStatus" name="taskStatus"><option>To do</option><option>In progress</option><option>Completed</option></select>
+        <div class="modal-actions"><button type="button" class="secondary-button" data-close="taskModal">Cancel</button><button type="submit" class="primary-button">Add task</button></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
