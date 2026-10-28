@@ -1,0 +1,32 @@
+{
+  "projects": [
+    {
+      "id": "2a3e7916-b177-46be-97ce-f61d5d9c3a28",
+      "name": "Campus Event Registration Portal",
+      "description": "Campus Event Registration Portal \nA portal where college organizers publish events and students register to participate. Organizers can manage event details, registration limits, participant lists, and event status.",
+      "dueDate": "2026-10-29",
+      "color": "green",
+      "createdAt": "2026-10-27T14:57:46.383Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "841cc61e-b796-4a6a-9d40-81d25a85bf2b",
+      "title": "prepare project presentation",
+      "projectId": "2a3e7916-b177-46be-97ce-f61d5d9c3a28",
+      "assignee": "4",
+      "dueDate": "2026-10-29",
+      "status": "Completed",
+      "createdAt": "2026-10-27T14:59:01.540Z"
+    },
+    {
+      "id": "2408f3ff-3dc2-4c56-b69d-089cd8ec69c4",
+      "title": "prepare a presentation",
+      "projectId": "2a3e7916-b177-46be-97ce-f61d5d9c3a28",
+      "assignee": "2",
+      "dueDate": "2026-10-21",
+      "status": "In progress",
+      "createdAt": "2026-10-27T15:24:56.773Z"
+    }
+  ]
+}
